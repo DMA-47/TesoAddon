@@ -132,14 +132,6 @@ def check_time():
  
     
 def timer():
-
-    def exit_win(event):
-        root.destroy()
-    
-    def destr():
-        time.sleep(2)
-        root.destroy()
-        
     def update():
         global timers
         check_time()
@@ -154,17 +146,16 @@ def timer():
     root.attributes("-topmost",True)
     root.title("Timer")
     width_win = len(button_text(0)) * 12
-    height_win = num_timer * 33
-    root.geometry(str(width_win) + 'x' + str(height_win) + '+300+-30')
+    height_win = num_timer * 28
+    root.geometry(str(width_win) + 'x' + str(height_win) + '+250+-30')
     root.configure(bg='white')
     
-    root.bind('<Alt-t>', exit_win)
     buttons = []
     for i in range(num_timer):
         timer = timers[i]
 
-        buttons.append(Button(text=button_text(i), font=("Courier", 12), bg=color_button(i), command= lambda i=i:start_timer(i)))
-        buttons[i].place(relx=0.5, rely=(0.5 / num_timer) + (1 / num_timer) * i, anchor='c', height=30, width=width_win-10)
+        buttons.append(Button(text=button_text(i), font=("Courier", 11), bg=color_button(i), command= lambda i=i:start_timer(i)))
+        buttons[i].place(relx=0.5, rely=(0.5 / num_timer) + (1 / num_timer) * i, anchor='c', height=25, width=width_win-10)
     
     root.after(500, update)
     root.after(5000, root.destroy)
@@ -173,12 +164,14 @@ def timer():
     root.mainloop()
 
 
+minute_time = 7
 
-timers = [['timer 1', 15*60, 0],
-          ['timer 2', 15*60, 0],
-          ['timer 3', 15*60, 0],
-          ['timer 4', 15*60, 0],
-          ['timer 5', 15*60, 0]]
+timers = [['Мемориальный район', minute_time*60, 0],
+          ['Район Арены', minute_time*60, 0],
+          ['Дендрарий', minute_time*60, 0],
+          ['Храмовый район', minute_time*60, 0],
+          ['Район Знати', minute_time*60, 0],
+          ['Район Эльфийские сады', minute_time*60, 0]]
 
 max_len = max_name()
 num_timer = len(timers)
@@ -189,7 +182,6 @@ time_red = timedelta(0, 0, 0, 0, 1/12, 0, 0) # 5 sec
 # wait1 - t > 30 sec
 # wait2 - 30 > t > 5 sec
 # wait3 - 5 > t > 0 sec
-# 
 check_list = ['wait1']*num_timer
 
 print(check_list)
@@ -228,7 +220,7 @@ while True:
         
     winsound.Beep(500, 500)
 
-
+input('Nu vse - pizdec!')
 
 
 
